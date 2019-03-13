@@ -1,0 +1,45 @@
+using System;
+
+namespace ex09_jedi_accademy
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool moneyIsEnough = false;
+//            100
+//42
+//12.0
+//4.0
+//3.0
+            float ivanChoMoneyAvalable = float.Parse(Console.ReadLine());
+            int ammountOfStudents = int.Parse(Console.ReadLine());
+            float priceLightSaber = float.Parse(Console.ReadLine());
+            float priceRobes = float.Parse(Console.ReadLine());
+            float priceBelts = float.Parse(Console.ReadLine());
+
+            float totalLightSaberDemandTemp = (float)Math.Ceiling(ammountOfStudents * 1.1);
+            double totalLihSabersDemand = priceLightSaber * totalLightSaberDemandTemp;
+            double freeBelt = Math.Floor((double)ammountOfStudents / 6);
+            float totalPrice = (float)totalLihSabersDemand + (priceRobes * ammountOfStudents) + priceBelts *( ammountOfStudents - (float)freeBelt);
+
+//            The output should be printed on the console.f
+// If the calculated price of the equipment is less or equal to the money Ivan Cho has:
+//            o & quot; The money is enough - it would cost { the cost of the equipment}
+//            lv.& quot;
+            if(totalPrice <= ivanChoMoneyAvalable)
+            {
+                Console.WriteLine($"The money is enough - it would cost {totalPrice:f2}lv.");
+            }
+            else
+            {
+                float neededMoney = totalPrice - ivanChoMoneyAvalable;
+                Console.WriteLine($"Ivan Cho will need {neededMoney:f2}lv more.");
+            }
+// If the calculated price of the equipment is more than the money Ivan Cho has:
+//            o & quot; Ivan Cho will need { neededMoney}
+//            lv more.&quot;
+// All prices must be rounded to two digits after the decimal point.
+        }
+    }
+}
