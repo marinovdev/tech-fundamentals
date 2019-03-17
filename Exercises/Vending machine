@@ -1,0 +1,143 @@
+using System;
+
+namespace ex07_vending_machine
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool validProduct = false;
+            decimal currentProductValue = 0;
+            string productNamePrint = "";
+            bool purchiseSuccesful = false;
+            //            You task is to calculate the total price of a purchase from a vending machine.Until you receive “Start” you will be
+            //given different coins that are being inserted in the machine. You have to sum them in order to have the total money
+            //inserted.There is a problem though. ???  Your vending machine only works with 0.1, 0.2, 0.5, 1, and 2 coins.If someone
+            //tries to insert some other coins you have to display “Cannot accept { money}” and not add it to the total money. ???? On
+            //the next few lines until you receive “End” you will be given products to purchase.Your machine has however only
+            //“Nuts”, “Water”, “Crisps”, “Soda”, “Coke”. The prices are: 2.0, 0.7, 1.5, 0.8, 1.0 respectively.If the person tries to
+            //purchase a not existing product print “Invalid product”. Be careful that the person may try to purchase a product
+            //they don’t have the money for. In that case print “Sorry, not enough money”. If the person purchases a product
+            //successfully print “Purchased { product name}”. After the “End” command print the money that are left formatted
+            //to the second decimal point in the format “Change: { money left}”.
+            string command = "";
+            decimal totalValueOfMoney = 0;
+            while ((command = Console.ReadLine()) != "Start")
+            {
+                decimal coinInsert = decimal.Parse(command);
+                if (coinInsert == 0.1m || coinInsert == 0.2m || coinInsert == 0.5m || coinInsert == 1 || coinInsert == 2)
+                {
+                    totalValueOfMoney += coinInsert;
+                }
+                else
+                {
+                    Console.WriteLine($"Cannot accept {coinInsert}"); // 1 / 1/ 0.5 / 0.6
+                }
+             }
+            if (command == "Start")
+            {
+                string productName = "";
+                while ((productName = Console.ReadLine()) != "End" || !(totalValueOfMoney <= 0))
+                {
+                    if (productName == "End") break;
+                    else if (productName == "Nuts")
+                    {
+                        validProduct = true;
+                        currentProductValue = 2;
+                        productNamePrint = "nuts";
+                        if (currentProductValue > totalValueOfMoney)
+                        {
+                            Console.WriteLine($"Sorry, not enough money");
+                            purchiseSuccesful = false;
+                        }
+                        else
+                        {
+                            totalValueOfMoney -= currentProductValue;
+                            purchiseSuccesful = true;
+                        }
+                    }
+                    else if (productName == "Water")
+                    {
+                        validProduct = true;
+                        currentProductValue = 0.7m;
+                        productNamePrint = "water";
+                        if (currentProductValue > totalValueOfMoney)
+                        {
+                            Console.WriteLine($"Sorry, not enough money");
+                            purchiseSuccesful = false;
+                        }
+                        else
+                        {
+                            totalValueOfMoney -= currentProductValue;
+                            purchiseSuccesful = true;
+                        }
+                    }
+                    else if (productName == "Crisps") //2.0, 0.7, 1.5, 0.8, 1.0
+                    {
+                        validProduct = true;
+                        currentProductValue = 1.5m;
+                        productNamePrint = "crisps";
+                        if (currentProductValue > totalValueOfMoney)
+                        {
+                            Console.WriteLine($"Sorry, not enough money");
+                            purchiseSuccesful = false;
+                        }
+                        else
+                        {
+                            totalValueOfMoney -= currentProductValue;
+                            purchiseSuccesful = true;
+                        }
+                    }
+                    else if (productName == "Soda")
+                    {
+                        validProduct = true;
+                        currentProductValue = 0.8m;
+                        productNamePrint = "soda";
+                        if (currentProductValue > totalValueOfMoney)
+                        {
+                            Console.WriteLine($"Sorry, not enough money");
+                            purchiseSuccesful = false;
+                        }
+                        else
+                        {
+                            totalValueOfMoney -= currentProductValue;
+                            purchiseSuccesful = true;
+                        }
+                    }
+                    else if (productName == "Coke")
+                    {
+                        validProduct = true;
+                        currentProductValue = 1;
+                        productNamePrint = "coke";
+                        if (currentProductValue > totalValueOfMoney)
+                        {
+                            Console.WriteLine($"Sorry, not enough money");
+                            purchiseSuccesful = false;
+                        }
+                        else
+                        {
+                            totalValueOfMoney -= currentProductValue;
+                            purchiseSuccesful = true;
+                        }
+                    }
+                    else if (validProduct == false)
+                    {
+                        Console.WriteLine($"Invalid product");
+                        break;
+                    }
+
+                    if (purchiseSuccesful == true)
+                    {
+                        Console.WriteLine($"Purchased {productNamePrint}");
+                    }
+
+                    purchiseSuccesful = false;
+                    validProduct = false;
+                }
+            }
+
+                Console.WriteLine($"Change: {totalValueOfMoney:f2}");
+
+        }
+    }
+}
