@@ -1,0 +1,24 @@
+using System;
+
+namespace ex_08_triangle_numbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int currentNumber = 1;
+            int finalNumber = int.Parse(Console.ReadLine());
+            for (int counter = 1; counter <= finalNumber; counter++)
+            {
+                for (int i = 1; i <= counter; i++)
+                {
+                    Console.Write(currentNumber + " ");
+                    
+                }
+                currentNumber++;
+                Console.WriteLine();
+
+            }
+        }
+    }
+}
