@@ -1,0 +1,32 @@
+using System;
+using System.Linq;
+
+namespace _02_common_elements
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+//            S of t un i
+//of i 10 un    :: of i un
+
+            string firstArray = Console.ReadLine();//1ms
+            string secoundArray = Console.ReadLine();
+
+            //trim empty space and add to array
+            string[] paths1 = firstArray.Split(' ').Select(a => a.Trim()).ToArray();
+            string[] paths2 = secoundArray.Split(' ').Select(a => a.Trim()).ToArray();
+
+            foreach(string element2 in paths2)
+            {
+                foreach(string element in paths1)
+                {
+                    if(element == element2)
+                    {
+                        Console.Write(element + " ");
+                    }
+                }
+            }
+
+        }
+    }
