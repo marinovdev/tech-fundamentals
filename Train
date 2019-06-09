@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Programming_Fundamentals
+{
+    class Program
+    {
+        static void Main()
+        {
+
+            //total people in all the wagons
+            int TotalPeople = 0;
+            
+            //inout the number of wagons 
+            int NumberOfWagonsInTrainN = int.Parse(Console.ReadLine());
+            // the amount of people in each wagon is stored in this aray :
+            int[] PeopleInEachWagon = new int[NumberOfWagonsInTrainN];
+            for (int counter = 0; counter < NumberOfWagonsInTrainN; counter++)
+            {
+                int amountOfPeopleInThecurrentWagon = int.Parse(Console.ReadLine());
+                PeopleInEachWagon[counter] = amountOfPeopleInThecurrentWagon;
+            }
+            for (int counter = 0; NumberOfWagonsInTrainN > counter; counter++)
+            {
+                int peopleInThisWagon = PeopleInEachWagon[counter];
+                TotalPeople += peopleInThisWagon;
+                Console.Write(peopleInThisWagon + " ");
+            }
+            Console.WriteLine("\n" + TotalPeople);
+        }
+    }
+}
