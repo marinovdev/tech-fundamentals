@@ -1,0 +1,45 @@
+using System;
+using System.Text;
+
+namespace _03_Charachters_in_Range
+{
+    class Program
+    {
+        private static object character;
+
+        static void Main()
+        {
+            //write two chars and the program will output the rest between them according to the ASCII table
+            char firstChar = char.Parse(Console.ReadLine());
+            char secoundChar = char.Parse(Console.ReadLine());
+            PrintInBetween(firstChar, secoundChar);
+        }
+
+        static void PrintInBetween(char firstChar, char secoundChar)
+        {
+            string output = "";
+            int firstCharNumeric = (int)firstChar; // 67
+            int secoundCharNumeric = (int)secoundChar; //35
+            if (firstCharNumeric < secoundCharNumeric)
+            {
+                firstCharNumeric += 1;
+                for (int counter = firstCharNumeric; firstCharNumeric < secoundCharNumeric; counter += 1, firstCharNumeric += 1)
+                {               
+                    char currentChar = (char)counter;                   
+                    output += currentChar + " ";
+                }
+            }
+            else if (firstCharNumeric > secoundCharNumeric)
+            {
+                secoundCharNumeric += 1;
+                for (int counter = secoundCharNumeric; firstCharNumeric >  secoundCharNumeric; counter++, secoundCharNumeric++)
+                {
+                    
+                    char currentChar =(char)counter;
+                    output += currentChar + " ";
+                }
+            }
+            Console.WriteLine(output);
+        }
+    }
+}
