@@ -1,0 +1,30 @@
+using System;
+
+namespace _05_sum_and_subtract
+{
+    class Program
+    {
+        static void Main()
+        {
+            // variables
+            int sum = 0;
+            int subtract = 0;
+            //input 3 numbers
+            int firstNumber = int.Parse(Console.ReadLine());
+            int secoundNumber = int.Parse(Console.ReadLine());
+            int thirdNumber = int.Parse(Console.ReadLine());
+            Sum(firstNumber, secoundNumber, ref sum);
+            Subtract(sum, thirdNumber, ref subtract);
+            Console.WriteLine(subtract);
+            
+        }
+        static void Sum(int firstNumber, int secoundNumber, ref int sum)
+        {
+            sum = firstNumber + secoundNumber;
+        }
+        static void Subtract(int sum, int thirdNumber, ref int subtract)
+        {
+            subtract = sum - thirdNumber;
+        }
+    }
+}
