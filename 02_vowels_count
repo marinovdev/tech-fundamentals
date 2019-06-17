@@ -1,0 +1,32 @@
+using System;
+
+namespace _02_vowels_count
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            //input a text
+            string Text = Console.ReadLine();
+            //puts each letter in an array
+            char[] LettersFromText = Text.ToCharArray();
+            VowelsCounter(LettersFromText);
+            
+        }
+        static void VowelsCounter(char[] LettersFromText)
+        {
+            int ContainsNTimesVowel = 0;
+            foreach (char element in LettersFromText)
+            {
+                if ("aeiouAEIOU".IndexOf(element) >= 0)
+                {
+                    ContainsNTimesVowel++;
+                    
+                }
+                          
+            }
+            Console.WriteLine(ContainsNTimesVowel);
+        }
+    }
+}
