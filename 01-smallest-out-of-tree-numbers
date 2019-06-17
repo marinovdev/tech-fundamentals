@@ -1,0 +1,34 @@
+using System;
+
+namespace _01_smallest_out_of_three__numbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //input three numbers
+            int FirstNumber = int.Parse(Console.ReadLine());
+            int SecoundNumber = int.Parse(Console.ReadLine());
+            int ThirdNumber = int.Parse(Console.ReadLine());
+            ChoseSmallestNumber(FirstNumber, SecoundNumber, ThirdNumber);
+        }
+        static void ChoseSmallestNumber(int FirstNumber, int SecoundNumber, int ThirdNumber)
+        {
+            int SmallestNumber = 0;
+            if(FirstNumber <= SecoundNumber && FirstNumber <= ThirdNumber)
+            {
+                SmallestNumber = FirstNumber;
+            }
+            else if(SecoundNumber <= FirstNumber && SecoundNumber <= ThirdNumber)
+            {
+                SmallestNumber = SecoundNumber;
+
+            }
+            else if(ThirdNumber <= SecoundNumber && ThirdNumber <= FirstNumber)
+            {
+                SmallestNumber = ThirdNumber;
+            }
+            Console.WriteLine(SmallestNumber);
+        }
+    }
+}
