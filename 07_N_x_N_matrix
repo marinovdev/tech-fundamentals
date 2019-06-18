@@ -1,0 +1,26 @@
+using System;
+
+namespace _07_N_x_N_matrix
+{
+    class Program
+    {
+        static void Main()
+        {
+            //receive an int of N
+            int n = int.Parse(Console.ReadLine());
+            PrintMatrix(n);
+        }
+
+        static void PrintMatrix(int n)
+        {
+            for(int counter = 1; counter <= n; counter++)
+            {
+                for(int counter2 = 1; counter2 <= n; counter2++)
+                {
+                    Console.Write(n + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
