@@ -1,0 +1,39 @@
+using System;
+
+namespace _06_middle_charachters
+{
+    class Program
+    {
+        static void Main()
+        {
+            //input a string
+            string input = Console.ReadLine();
+            char[] charArray = new char[input.Length];
+            int counter = 0;
+            foreach (char item in input)
+            {
+                charArray[counter] = item;
+                counter++;
+            }
+            string output = "";
+            MiddleCharOfArray(charArray, input.Length, ref output);
+            Console.WriteLine(output);
+        }
+
+        static void MiddleCharOfArray(char[] charArray, int sizeOfInput, ref string output)
+        {
+            if(sizeOfInput % 2 == 0)
+            {
+                int NewSizeOfInput = sizeOfInput /2 - 1;
+                output +=Convert.ToString(charArray[(int)NewSizeOfInput]);
+                output += Convert.ToString(charArray[(int)NewSizeOfInput + 1]);
+
+            }
+            else if(sizeOfInput % 2 == 1)
+            {
+                int NewSizeOfInput = sizeOfInput / 2;
+                output += charArray[NewSizeOfInput].ToString();
+            }
+        }
+    }
+}
