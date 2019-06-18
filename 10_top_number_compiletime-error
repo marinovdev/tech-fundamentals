@@ -1,0 +1,68 @@
+using System;
+
+namespace _10_top_number
+{
+    class Program
+    {
+        static void Main()
+        {
+            //read input from the console
+            int EndNumber = int.Parse(Console.ReadLine());
+            bool DoesItContainOddNumber = false;
+            bool IsDivedableBy8 = false;
+            for (int counter = 1; counter <= EndNumber; counter++)
+            {
+                DoesItContainOddNumberCheck(counter, ref DoesItContainOddNumber);
+                IsDivedableBy8Check(counter, ref IsDivedableBy8);
+                if (DoesItContainOddNumber == true && IsDivedableBy8 == true)
+                {
+                    Console.WriteLine(counter);
+                }
+            }
+        }
+
+        static bool DoesItContainOddNumberCheck(int counter, ref bool DoesItContainOddNumber)
+        {
+            int currentNumber = counter; // the currentNUmber now contains the value from the counter from Main()
+            int temp = 0;
+            int oddOccurances = 0; // times odd numbers in the current count
+            while(currentNumber > 0)
+            {
+                temp = currentNumber % 10;
+                if (temp % 2 == 1)
+                {
+                    oddOccurances++;
+                }
+                currentNumber /= 10;
+            }
+            if (oddOccurances > 0)
+            {
+                return DoesItContainOddNumber = true;
+            }
+            else
+            {
+                return DoesItContainOddNumber = false;
+            }
+
+        }
+
+        static bool IsDivedableBy8Check(int counter, ref bool IsDivedableBy8)
+        {
+            int TotalSumOfDigits = 0;
+            int temp = counter;
+            while(temp > 0 )
+            {
+                TotalSumOfDigits += temp % 10;
+                temp /= 10;
+            }
+            if (TotalSumOfDigits % 8 == 0)
+            {
+                return IsDivedableBy8 = true;
+            }
+            else
+            {
+                return IsDivedableBy8 = false;
+            }
+        }
+    }
+}
