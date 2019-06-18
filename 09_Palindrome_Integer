@@ -1,0 +1,39 @@
+using System;
+using System.Linq;
+
+namespace _09_Palindrome_Integer
+{
+    class Program
+    {
+        static void Main()
+        {
+            string input = "";
+            while((input = Console.ReadLine()) != "END")
+            {                
+                char[] InputToArray = new char[input.Length];
+                int counter = 0;
+                // adding each number to array
+                foreach (char item in input)
+                {
+                    InputToArray[counter] = item;
+                    counter++;
+                }
+                //reverse the array
+                Array.Reverse(InputToArray);
+                //from array(reversed) to string again
+                string StringInputReversed = "";
+                int counter2 = 0;
+                foreach (char item in InputToArray)
+                {
+                    StringInputReversed += InputToArray[counter2];
+                    counter2++;
+                }
+                //Compare and print false or true
+                int inputNumber = int.Parse(input);
+                int inputReversedNumber = int.Parse(StringInputReversed);
+                if (inputNumber == inputReversedNumber) Console.WriteLine("true");
+                else Console.WriteLine("false");
+            }
+        }
+    }
+}
