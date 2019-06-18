@@ -1,0 +1,41 @@
+using System;
+
+namespace _08_factorial_division
+{
+    class Program
+    {
+        static void Main()
+        {
+
+            // input two numbers
+            double firstNumber = double.Parse(Console.ReadLine());
+            double secoundNumber = double.Parse(Console.ReadLine());
+            //factorial variables
+            double factorialOfFirstNumber = firstNumber;
+            double factorialOfSecoundNumber = secoundNumber;
+            firstFactorial(firstNumber, ref factorialOfFirstNumber);
+            secoundFactorial(secoundNumber, ref factorialOfSecoundNumber);
+            double output = factorialOfFirstNumber / factorialOfSecoundNumber;
+            Console.WriteLine($"{output:F2}");
+
+        }
+
+        static double firstFactorial(double firstNumber, ref double factorialOfFirstNumber)
+        {
+            for(double counter = firstNumber - 1; counter > 1; counter--)
+            {
+                factorialOfFirstNumber *= counter;
+            }
+            return factorialOfFirstNumber;
+        }
+
+        static double secoundFactorial(double secoundNumber, ref double factorialOfSecoundNumber)
+        {
+            for (double counter = secoundNumber - 1; counter > 1; counter--)
+            {
+                factorialOfSecoundNumber *= counter;
+            }
+            return factorialOfSecoundNumber;
+        }
+    }
+}
