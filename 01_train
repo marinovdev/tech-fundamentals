@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _01_train
+{
+    class Program
+    {
+        static void Main()
+        {
+            // read line from the consle
+            string InputPassengersForeachWagon = Console.ReadLine();
+            List<int> Wagons = InputPassengersForeachWagon.Split(' ').Select(Int32.Parse).ToList();
+            int MaxCapacityOfEachWagon = int.Parse(Console.ReadLine());
+            string input = "";
+            while((input = Console.ReadLine()) != "end")
+            {
+                string[] TakeAction = input.Split(' ').ToArray();
+                if(TakeAction[0] == "Add")
+                {
+                    Add(ref Wagons, TakeAction);
+                }
+                else if(int.TryParse(TakeAction[0], out int n))
+                {
+                    InputIsNumeric(ref Wagons, TakeAction, MaxCapacityOfEachWagon);
+                }
+
+            }
+            foreach (var item in Wagons)
+            {
+                Console.Write(item + " ");
+            }
+        }
+
+        static void Add(ref List<int> Wagons, string[] TakeAction)
+        {
+            Wagons.Add(Convert.ToInt32(TakeAction[1]));
+        }
+        static void InputIsNumeric(ref List<int> Wagons, string[] TakeAction, int MaxCapacityOfEachWagon)
+        {
+            for(int index = 0; index < Wagons.Count; index++)
+            {
+                if(Wagons[index] + int.Parse(TakeAction[0]) <= MaxCapacityOfEachWagon)
+                {
+                    Wagons[index] = Wagons[index] + int.Parse(TakeAction[0]);
+                    break;
+                }
+            }
+        }
+    }
+}
