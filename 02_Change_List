@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _02_Change_List
+{
+    class Program
+    {
+        static void Main()
+        {
+            string InputNumbers = Console.ReadLine();
+            List<int> ListOfNumbers = InputNumbers.Split(" ").Select(Int32.Parse).ToList();
+            string command = "";
+            while((command = Console.ReadLine()) != "end")
+            {
+                string[] commandArray = command.Split(" ").ToArray();
+                if(commandArray[0] == "Delete")
+                {
+                    Delete(ref ListOfNumbers, commandArray);
+                }
+                if(commandArray[0] == "Insert")
+                {
+                    InsertN(ref ListOfNumbers, commandArray);
+                }
+            }
+            foreach (var item in ListOfNumbers)
+            {
+                Console.Write(item + " ");
+            }
+        }
+
+        static void Delete(ref List<int> ListOfNumbers, string[] commandArray)
+        {
+            Predicate<int> NumberToMatch = x => x == int.Parse(commandArray[1]); // 
+            ListOfNumbers.RemoveAll(NumberToMatch); //
+        }
+
+        static void InsertN(ref List<int> ListOfNumbers, string[] commandArray)
+        {          
+                ListOfNumbers.Insert(int.Parse(commandArray[2]), int.Parse(commandArray[1]));
+        }
+    }
+}
