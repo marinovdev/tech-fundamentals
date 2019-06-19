@@ -1,0 +1,55 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace _03_House_Party
+{
+    class Program
+    {
+        static void Main()
+        {
+            //List of People That are listed for going to the party
+            List<string> PeopleGoingToTheParty = new List<string>();
+            int nCommands = int.Parse(Console.ReadLine());
+            while(nCommands > 0)
+            {
+                string CurrentCommand = Console.ReadLine();
+                string[] CommandSplit = CurrentCommand.Split(" ").ToArray();
+                if(CommandSplit[2] == "going!")
+                {
+                    Going(CommandSplit, ref PeopleGoingToTheParty);
+                }
+                else if(CommandSplit[2] == "not")
+                {
+                    Not(CommandSplit, ref PeopleGoingToTheParty);
+                }
+                nCommands--;
+            }
+            foreach (var item in PeopleGoingToTheParty)
+            {
+                Console.Write(item  + "\n");
+            }
+        }
+
+        static void Going(string[] CommandSplit, ref List<string> PeopleGoingToTheParty)
+        {
+            if(!(PeopleGoingToTheParty.Contains(CommandSplit[0])))
+            {
+                PeopleGoingToTheParty.Add(CommandSplit[0]);
+            }
+            else
+                Console.WriteLine($"{CommandSplit[0]} is already in the list!");
+        }
+
+        static void Not(string[] CommandSplit, ref List<string> PeopleGoingToTheParty)
+        {
+            if (PeopleGoingToTheParty.Contains(CommandSplit[0]))
+            {
+                Predicate<string> name = x => x == CommandSplit[0];
+                PeopleGoingToTheParty.RemoveAll(name);
+            }
+            else if (!(PeopleGoingToTheParty.Contains(CommandSplit[0])))
+                Console.WriteLine($"{CommandSplit[0]} is not in the list!");
+        }
+    }
+}
