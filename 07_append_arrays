@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _07_append_arrays
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string ReadaBunchOfInUnsortedNumbers = Console.ReadLine();
+            string[] numbersReversed = ReadaBunchOfInUnsortedNumbers.Split('|').ToArray();
+            Array.Reverse(numbersReversed);
+            List<int> tempListOfNumbers = new List<int>();
+            int[] finalArray = numbersReversed.SelectMany(s => s.Split( new string[] { " ", "  ", "   "}, StringSplitOptions.RemoveEmptyEntries)).Select(int.Parse).ToArray();
+
+            foreach (var item in finalArray)
+            {
+                Console.Write(item + " ");
+            }
+        }
+    }
+}
