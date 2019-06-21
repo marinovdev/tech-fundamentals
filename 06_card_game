@@ -1,0 +1,61 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace _06_card_game
+{
+    class Program
+    {
+        static void Main()
+        {
+            //Read 2 input lines from the console
+            List<int> firstDeck = Console.ReadLine().Split(" ").Select(int.Parse).ToList();
+            List<int> secoundDeck = Console.ReadLine().Split(" ").Select(int.Parse).ToList();
+            while(!(firstDeck.Count.Equals(0)) && !(secoundDeck.Count.Equals(0)))
+            {
+                //Compare
+                if(firstDeck[0].Equals(secoundDeck[0]))
+                {
+                    //Draw(ref firstDeck, ref secoundDeck);
+                    firstDeck.RemoveAt(0);
+                    secoundDeck.RemoveAt(0);
+                }
+                else if(firstDeck[0] > secoundDeck[0])
+                {
+                    //FirstDeckIsBigger(ref firstDeck, ref secoundDeck);
+                    firstDeck.Add(firstDeck[0]);
+                    firstDeck.Add(secoundDeck[0]);
+                    firstDeck.RemoveAt(0);
+                    secoundDeck.RemoveAt(0);
+                }
+                else if(firstDeck[0] < secoundDeck[0])
+                {
+                    //SecoundDeckIsBigger(ref firstDeck, ref secoundDeck);
+                    secoundDeck.Add(secoundDeck[0]);
+                    secoundDeck.Add(firstDeck[0]);
+                    secoundDeck.RemoveAt(0);
+                    firstDeck.RemoveAt(0);
+                }
+            }
+            //Game had finished declare the winner
+            int sum = 0;
+            if(firstDeck.Count > 0)
+            {
+                foreach (var item in firstDeck)
+                {
+                    sum += item;
+                }
+                Console.WriteLine($"First player wins! Sum: {sum}");
+            }
+            else
+            {
+                foreach (var item in secoundDeck)
+                {
+                    sum += item;
+                }
+                Console.WriteLine($"Second player wins! Sum: {sum}");
+            }
+        }
+
+    }
+}
