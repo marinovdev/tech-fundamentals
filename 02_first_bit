@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _02_first_bit
+{
+    class Program
+    {
+        static void Main()
+        {
+            byte numberInput = byte.Parse(Console.ReadLine());
+            numberInput = (byte)(numberInput >> 1);
+            Console.WriteLine(numberInput);
+            string ToBinary = Convert.ToString(numberInput, 2);
+
+            Console.WriteLine(ToBinary);
+            Console.WriteLine(ToBinary[ToBinary.Length - 1]);
+
+        }
+    }
+}
