@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+
+namespace _01_binary_digits_count
+{
+    class Program
+    {
+        static void Main()
+        {
+            int DecimalNumber = int.Parse(Console.ReadLine());
+            char RepetitionsOfNumber = char.Parse(Console.ReadLine());
+            int nTimes = 0;
+            string BinaryNumber = "";
+            while(DecimalNumber > 0)
+            {
+                BinaryNumber += Convert.ToString(DecimalNumber % 2);
+                DecimalNumber /= 2;
+            }
+            char[] DecimalArray = BinaryNumber.ToString().ToCharArray();
+            foreach (var item in DecimalArray)
+            {
+                if (item == RepetitionsOfNumber)
+                    nTimes++;
+            }
+            Console.WriteLine(nTimes);
+        }
+    }
+}
