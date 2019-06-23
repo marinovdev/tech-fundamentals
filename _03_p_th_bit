@@ -1,0 +1,17 @@
+using System;
+
+namespace _03_p_th_bit
+{
+    class Program
+    {
+        static void Main()
+        {
+            int InputNumber = int.Parse(Console.ReadLine());
+            int p = int.Parse(Console.ReadLine());
+            string BinaryNumber = Convert.ToString(InputNumber, 2).PadLeft(32, '0');
+            char BinaryNumberPositionP = BinaryNumber[BinaryNumber.Length - 1 - p];
+            Console.WriteLine(BinaryNumber);
+            Console.WriteLine(BinaryNumberPositionP);
+        }
+    }
+}
