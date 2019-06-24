@@ -1,0 +1,41 @@
+using System;
+using System.Linq;
+namespace _04_array_rotation
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //reads a string of numbers from the console
+            string numbers = Console.ReadLine();
+            string[] StringArrayOfNumbers = numbers.Split(" ");
+            int n = int.Parse(Console.ReadLine());
+            //public variables
+            int[] numbersArray = Array.ConvertAll(StringArrayOfNumbers, int.Parse);
+            int[] newArray = new int[numbersArray.Length];
+            //
+            int StartAtElement = (n % numbersArray.Length) - 1;
+            int SecoundPart = StartAtElement + 1;
+            int elementOfTheNewArrayIndex = newArray.Length - 1;
+            //
+            for(int i = StartAtElement; StartAtElement >= 0; StartAtElement--)
+            {
+                newArray[elementOfTheNewArrayIndex] = numbersArray[StartAtElement];
+                elementOfTheNewArrayIndex--;
+            }
+            //secound part
+            int counter = 0;
+            while (SecoundPart <= numbersArray.Length - 1)
+            {
+                newArray[counter] = numbersArray[SecoundPart];
+                counter++;
+                SecoundPart++;
+            }
+            foreach (var item in newArray)
+            {
+                Console.Write(item + " ");
+            }
+            }
+        }
+    }
+
