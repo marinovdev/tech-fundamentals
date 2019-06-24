@@ -1,0 +1,42 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace _05_top_integers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //input a string of numbers
+            int[] NumberSequence = Console.ReadLine().Split(" ").Select(int.Parse).ToArray();
+            int CurrentMaxNumber = 0;
+            List<int> OutputNumbers = new List<int>();
+            for(int index = 0; index <= NumberSequence.Length - 1; index++)
+            {
+                bool IsThereBigger = false;
+                bool AlreadyHaveThatNumber = false;
+                for(int index2 = index +1; index2 <= NumberSequence.Length - 1; index2++)
+                {
+                    if(NumberSequence[index] < NumberSequence[index2])
+                    {
+                        IsThereBigger = true;
+                    }
+                }
+                if (OutputNumbers.Contains(NumberSequence[index]))
+                    AlreadyHaveThatNumber = true;
+                if(IsThereBigger == false && AlreadyHaveThatNumber == false)
+                {
+                    OutputNumbers.Add(NumberSequence[index]);
+                }
+            }
+            // print resuilt
+                foreach (var item in OutputNumbers)
+                {
+                    Console.Write(item + " ");
+                }
+           
+
+        }
+    }
+}
