@@ -1,0 +1,58 @@
+using System;
+using System.Linq;
+
+namespace _07_equal_sums
+{
+    class Program
+    {
+        static void Main()
+        {
+            int[] NumbersSequence = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+            int[] IterationsForEachIndex = new int[NumbersSequence.Length];
+            int[] currentMaxIndex = new int[3];
+            IterationsToArray(NumbersSequence, ref IterationsForEachIndex);
+            currentMaxIndex[1] = 0;
+            for (int index = 0; index < IterationsForEachIndex.Length; index++)
+            {
+                if(IterationsForEachIndex[index] > currentMaxIndex[1])
+                {
+                    currentMaxIndex[1] = IterationsForEachIndex[index];
+                    currentMaxIndex[0] = index;
+                    currentMaxIndex[2] = NumbersSequence[index];
+                }
+            }
+            PrintResuilt(currentMaxIndex, NumbersSequence);
+            
+        }
+
+        static void IterationsToArray(int[] NumbersSequence, ref int[] IterationsForEachIndex)
+        {
+            for (int counter = 0; counter < NumbersSequence.Length; counter++)
+            {
+                int CurrentValueIterations = 0;
+                for (int counter2 = counter; counter2 < NumbersSequence.Length; counter2++)
+                {
+                    if (NumbersSequence[counter] == NumbersSequence[counter2])
+                    {
+                        CurrentValueIterations++;
+                    }
+                    else break;
+                }
+                IterationsForEachIndex[counter] = CurrentValueIterations;
+            }
+        }
+        static void PrintResuilt(int[] currentMaxIndex, int[] NumbersSequence)
+        {
+            string output = "";
+            for(int index = currentMaxIndex[0]; index < NumbersSequence.Length; index++)
+            {
+                if (NumbersSequence[index] == currentMaxIndex[2])
+                {
+                    output += Convert.ToString(NumbersSequence[index]) + " ";
+                }
+                else break;
+            }
+            Console.Write(output);
+        }
+    }
+}
