@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+
+namespace _02_Articles
+{
+    class Program
+    {
+        static void Main()
+        {
+            string ReadArticle = Console.ReadLine();
+            string[] SubmitArticle = ReadArticle.Split(", ");
+            Article article = new Article(SubmitArticle[0], SubmitArticle[1], SubmitArticle[2]);
+
+            int nRepetitions = int.Parse(Console.ReadLine());
+            for (int i = 0; i < nRepetitions; i++)
+            {
+                string[] command = Console.ReadLine().Split(": ");
+                if(command[0] == "Edit")
+                {
+                    string content = command[1];
+                    article.Edit(content);
+                }
+                if(command[0] == "ChangeAuthor")
+                {
+                    string author = command[1];
+                    article.ChangeAuthor(author);
+                }
+                if(command[0] == "Rename")
+                {
+                    string title = command[1];
+                    article.Rename(title);
+                }
+            }
+            Console.WriteLine($"{article.Title} - {article.Content}: {article.Author}");
+        }
+    }
+    class Article
+    {
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public string Author { get; set; }
+        public Article(string title, string content, string author)
+        {
+            this.Title = title;
+            this.Content = content;
+            this.Author = author;
+        }
+        public void Edit(string content)
+        {
+            this.Content = content;
+        }
+
+        public void ChangeAuthor(string author)
+        {
+            this.Author = author;
+        }
+
+        public void Rename(string title)
+        {
+            this.Title = title;
+        }
+    }
+}
