@@ -1,0 +1,48 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace _07_order_by_age
+{
+    class Program
+    {
+        static void Main()
+        {
+            List<Person> people = new List<Person>();
+            string input = Console.ReadLine();
+            while(input != "End")
+            {
+                string[] SplitInput = input.Split(" ");
+                string name = SplitInput[0];
+                string Id = SplitInput[1];
+                int age = int.Parse(SplitInput[2]);
+
+                Person person = new Person(name, Id, age);
+                people.Add(person);
+                input = Console.ReadLine();
+            }
+            people = people.OrderBy(x => x.Age).ToList();
+            Console.WriteLine(string.Join(Environment.NewLine, people));
+        }
+    }
+    class Person
+    {
+        public string Name { get; set; }
+        public string ID { get; set; }
+        public int Age { get; set; }
+
+        public Person(string name, string id, int age)
+        {
+            this.Name = name;
+            this.ID = id;
+            this.Age = age;
+        }
+        public override string ToString()
+        {
+            return $"{this.Name} with ID: {this.ID} is {this.Age} years old.";
+        }
+    }
+    }
+
+
+
