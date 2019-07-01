@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace dem03_Last_Stop
+{
+    class Program
+    {
+        static void Main()
+        {
+            List<int> numbers = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToList();
+            string command;
+            while((command = Console.ReadLine())!= "END")
+            {
+                string[] execute = command.Split();
+                string type = execute[0];
+                switch (type)
+                {
+                    case "Change":
+                        int firstNumber = int.Parse(execute[1]);
+                        int secoundNumber = int.Parse(execute[2]);
+                        ChangeNumber(firstNumber, secoundNumber, ref numbers);
+                            break;
+                    case "Hide":
+                        HideNumber(ref numbers, execute);
+                            break;
+                    case "Switch":
+                        SwitchNumber(ref numbers, execute);
+                            break;
+                    case "Insert":
+                        InsertNumber(ref numbers, execute);
+                            break;
+                    case "Reverse":
+                        Reverse(ref numbers, execute);
+                        break;
+                }
+            }
+            foreach (var item in numbers)
+            {
+                Console.Write(item + " ");
+            }
+        }
+        //        Change {paintingNumber
+        //    } {changedNumber
+        //} – find the painting with the first number in the collection
+        //(if it exists) and change its number with the second number – {changedNumber}.
+        static void ChangeNumber(int firstNumber, int secoundNumber, ref List<int> numbers)
+        {
+            if(numbers.Contains(firstNumber))
+            {
+                numbers[numbers.IndexOf(firstNumber)] = secoundNumber;
+            }
+        }
+        //Hide {paintingNumber} – find the painting with this value and if it exists and hide it (remove it).
+        static void HideNumber(ref List<int> numbers, string[] execute)
+        {
+            if (numbers.Contains(int.Parse(execute[1])))
+            {
+                numbers.Remove(int.Parse(execute[1]));
+            }
+        }
+        //Switch {paintingNumber} {paintingNumber2} – find the given paintings in the collections 
+        //if they exist and switch their places.
+        static void SwitchNumber(ref List<int> numbers, string[] execute)
+        {
+            if (numbers.Contains(int.Parse(execute[1])) && numbers.Contains(int.Parse(execute[2])))
+            {
+                int paintingNumber1 = int.Parse(execute[1]); // 97
+                int paintingNumber2 = int.Parse(execute[2]); // 78
+                int temp = int.Parse(execute[1]); // 97
+                numbers[numbers.IndexOf(paintingNumber1)] = paintingNumber2; // 5 =  78
+                numbers[numbers.IndexOf(paintingNumber2)] = temp; // 6 = 97
+            }
+        }
+        //Insert
+        //{ place } {paintingNumber} – insert the painting(paintingNumber) on
+        //the next place after the given one, if it exists.
+        static void InsertNumber(ref List<int> numbers, string[] execute)
+        {
+            if(numbers.Count - 1> int.Parse(execute[1]) && int.Parse(execute[1]) >= -1)
+            {
+                numbers.Insert(int.Parse(execute[1]) + 1, int.Parse(execute[2]));
+            }
+        }
+        //Reverse – you must reverse the order of the paintings
+        static void Reverse(ref List<int> numbers, string[] execute)
+        {
+            numbers.Reverse();
+        }
+
+    }
+}
