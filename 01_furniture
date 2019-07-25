@@ -1,0 +1,33 @@
+using System;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+
+namespace _01_furniture
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string command = "";
+            List<string> allFurniture = new List<string>();
+            while(((command = Console.ReadLine())!= "Purchase"))
+             {
+                string input = command;
+                allFurniture.Add(input);
+            }
+            Console.WriteLine("Bought furniture:");
+            Regex ItemRegex = new Regex(@"^>>([A-Za-z\s]+)<<([0-9]+|[0-9]+\.[0-9]{1,2})!([0-9]+)$");
+            float totalSum = 0;
+            for (int counter = 0; counter < allFurniture.Count; counter++)
+            {
+                foreach (Match ItemMatch in ItemRegex.Matches(allFurniture[counter]))
+                {
+                    Console.WriteLine(ItemMatch.Groups[1].Value);
+                    totalSum += float.Parse(ItemMatch.Groups[2].Value) * float.Parse(ItemMatch.Groups[3].Value);
+                }
+            }
+
+            Console.WriteLine($"Total money spend: {totalSum:F2}");
+        }
+    }
+}
