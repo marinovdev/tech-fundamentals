@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace _02_race
+{
+    class Program
+    {
+        static void Main()
+        {
+            //Deffy string patern to match using regex
+            Regex pattern = new Regex(@"[^A-Za-z]");
+            Regex patternNumber = new Regex(@"[\D]");
+            //input string names seperated by ,
+            string firstLine = Console.ReadLine();
+
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            // Split the string and add it to dictionary
+            foreach (var item in firstLine.Split(", "))
+            {
+               dict.Add(item, 0);
+            }
+
+            // read inputs until "end of race"
+            string command = "";
+            while((command = Console.ReadLine()) != "end of race")
+            {
+                var racerName = pattern.Replace(command, "");
+                string racerTemp = patternNumber.Replace(command, "");
+                int racerResult = 0;
+                foreach (char item in racerTemp)
+                {
+                    racerResult += item - '0';
+                }
+                if(dict.ContainsKey(racerName) && dict[racerName] == 0)
+                {
+                    dict[racerName] = racerResult;
+                }
+                else if (dict.ContainsKey(racerName) && dict[racerName] > 0)
+                {
+                    dict[racerName] += racerResult;
+                }
+            }
+            // Sort Dictionary
+            string[] output = new string[3];
+            int counter = 0;
+            foreach (KeyValuePair<string, int> item in dict.OrderByDescending(key => key.Value))
+            {
+                if (counter == output.Length) break;
+                output[counter] = item.Key;
+                counter++;
+            }
+            Console.WriteLine($"1st place: {output[0]}");
+            Console.WriteLine($"2nd place: {output[1]}");
+            Console.WriteLine($"3rd place: {output[2]}");
+        }
+    }
+}
