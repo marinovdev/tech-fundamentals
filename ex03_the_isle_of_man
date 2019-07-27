@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+namespace ex03_the_isle_of_man
+{
+    class Program
+    {
+        static void Main()
+        {
+            bool found = false;
+            bool lengthCorrectness = true;
+            string geoHashcode = "";
+            List<string> messages = new List<string>();
+            while(found == false)
+            {
+                string input = Console.ReadLine();
+                Regex pattern = new Regex(@"^([#$%*&])([A-z]+)(\1)=([0-9]+)!!(.+)$");
+                Match messageDecrypt = pattern.Match(input);
+                LengthCheck(messageDecrypt, ref lengthCorrectness);
+                if (messageDecrypt.Success && lengthCorrectness == true)
+                {
+                    foreach(char letter in messageDecrypt.Groups[5].Value)
+                    {
+                        int initialValue = Convert.ToInt32(letter) + int.Parse(messageDecrypt.Groups[4].Value);
+                        char newLetter = Convert.ToChar(initialValue);
+                        geoHashcode += newLetter;
+                    }
+                    messages.Add($"Coordinates found! {messageDecrypt.Groups[2].Value}" +
+                        $" -> {geoHashcode}");
+                    found = true;
+                }
+                else messages.Add("Nothing found!");
+            }
+            // PRINT RESULT
+            foreach (var message in messages)
+            {
+                Console.WriteLine(message);
+            }
+        }
+
+        static void LengthCheck(Match messageDecrypt,ref bool lengthCorrectness)
+        {
+            int a;
+            bool check = int.TryParse(messageDecrypt.Groups[4].Value, out a);
+            if (a == messageDecrypt.Groups[5].Value.Length)
+            {
+                lengthCorrectness = true;
+            }
+            else lengthCorrectness = false;
+        }
+    }
+}
