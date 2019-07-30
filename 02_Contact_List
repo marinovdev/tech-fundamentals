@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _02_Contact_List
+{
+    class Program
+    {
+        static void Main()
+        {
+            List<string> contacts = Console.ReadLine().Split(' ').ToList();
+
+            bool inLoop = true;
+            while (inLoop)
+            {
+                string[] commandArray = Console.ReadLine().Split(' ');
+                string command = commandArray[0];
+                string value1 = commandArray[1];
+                string value2 = "";
+                if (commandArray.Length == 3)
+                {
+                    value2 = commandArray[2];
+                }
+
+                if (command == "Add")
+                {
+                    if (contacts.Contains(value1))
+                    {
+                        if (contacts.Count > Convert.ToInt32(value2) && Convert.ToInt32(value2) >= 0) // < =============
+                        {
+                            contacts.Insert(Convert.ToInt32(value2), value1);
+                        }
+                    }
+                    else
+                    {
+                        contacts.Add(value1);
+                    }
+                }
+
+                else if (command == "Remove")
+                {
+                    if (Convert.ToInt32(value1) >= 0 && Convert.ToInt32(value1) < contacts.Count)
+                    {
+                        contacts.RemoveAt(Convert.ToInt32(value1));
+                    }
+                }
+                else if (command == "Export")   
+                {
+                    string output = "";
+                    if (contacts.Count > Convert.ToInt32(value1) + Convert.ToInt32(value2) && Convert.ToInt32(value1) >= 0) // VVVVVV
+                    {
+                        for (int i = Convert.ToInt32(value1); i <= Convert.ToInt32(value1) + Convert.ToInt32(value2) - 1; i++)
+                        {
+                            output += contacts[i] + " ";
+                        }
+                    }
+                    else if (Convert.ToInt32(value2) >= contacts.Count)
+                    {
+                        value2 = Convert.ToString(contacts.Count - 1);
+                        for (int i = Convert.ToInt32(value1); i <= Convert.ToInt32(value2); i++)
+                        {
+                            output += contacts[i] + " ";
+                        }
+                    }
+                    output = output.Trim(' ');
+                    Console.WriteLine(output);
+                }
+                else if (command == "Print")
+                {
+                    if (value1 == "Normal")
+                    {
+                        Console.Write("Contacts: ");
+                        foreach (var item in contacts)
+                        {
+                            Console.Write(item + " ");
+                        }
+                        break;
+                    }
+                    else if (value1 == "Reversed")
+                    {
+                        Console.Write("Contacts: ");
+                        List<string> tempList = new List<string>(contacts);
+                        tempList.Reverse();
+                        foreach (var item in tempList)
+                        {
+                            Console.Write(item + " ");
+                        }
+                        break;
+
+                    }
+                    inLoop = false;
+                }            
+
+            }
+        }
+    }
+}
