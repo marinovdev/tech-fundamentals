@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _01_distance_calculator
+{
+    class Program
+    {
+        static void Main()
+        {
+            //input
+            int stepsMade = int.Parse(Console.ReadLine()); // 100
+            decimal length = decimal.Parse(Console.ReadLine()); // 2
+            int distanceToTravel = int.Parse(Console.ReadLine()); // 1
+            //
+            int distanceToTravelInCm = distanceToTravel * 100; // 100
+            decimal distanceTravelled = (decimal)stepsMade * length; // 200
+            decimal distanceTravelled2 = stepsMade; // 200
+            int countTimes = 0;
+            while(distanceTravelled2 - 5 >= 0)
+            {
+                distanceTravelled2 = distanceTravelled2 - 5;
+                countTimes++;
+
+            }
+            //Console.WriteLine("countTImes: " + countTimes); // <=====
+            decimal tempVar = length * (Convert.ToDecimal(countTimes) / 100 * 30);
+            decimal afterSubtractingFifthStep = distanceTravelled - tempVar; // <-------- 101 - 6
+            //Console.WriteLine($"{distanceTravelled} - {countTimes} * 0.3 = " + afterSubtractingFifthStep); // <=============
+            decimal result = (afterSubtractingFifthStep / distanceToTravelInCm) * 100; // 100.4 / 10
+            //Console.WriteLine($"{afterSubtractingFifthStep} / {distanceToTravelInCm} * 100 = " + result); // <===========
+            //output
+
+                Console.WriteLine($"You travelled {result:f2}% of the distance!");
+
+        }
+    }
+}
